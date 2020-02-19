@@ -1,3 +1,5 @@
+/* This file contains everything that interacts with the blockchain */
+
 import { 
   web3Loaded,
   web3AccountLoaded,
@@ -5,7 +7,9 @@ import {
   exchangeLoaded,
   cancelledOrdersLoaded,
   filledOrdersLoaded,
-  allOrdersLoaded
+  allOrdersLoaded,
+  orderCancelling,
+  orderCancelled
 } from './actions'
 import Web3 from 'web3'
 import Token from '../abis/Token.json'
@@ -68,8 +72,22 @@ export const loadAllOrders = async (exchange, dispatch) => {
   const allOrders = orderStream.map(event => event.returnValues);
   // add all orders to redux store
   dispatch(allOrdersLoaded(allOrders));
+}
 
+export const cancelOrder = (dispatch, exchange, order, account) => {
+  exchange.methods.cancelOrder(order.id).send({ from: account })
+    .on('transactionHash', hash => {
+      dispatch(orderCancelling())
+    })
+    .on('error', error => {
+      console.log(error);
+      window.alert('There was an error.');
+    })
+}
 
-  // fetch all orders
-
+// Determines what actions to take when events are emiited from the smart contract
+export const subscribeToEvents = async (exchange, dispatch) => {
+  exchange.events.Cancel({}, (error, event) => {
+    dispatch(orderCancelled(event.returnValues))
+  })
 }
