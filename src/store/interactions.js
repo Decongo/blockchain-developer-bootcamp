@@ -9,7 +9,9 @@ import {
   filledOrdersLoaded,
   allOrdersLoaded,
   orderCancelling,
-  orderCancelled
+  orderCancelled,
+  orderFilling,
+  orderFilled
 } from './actions'
 import Web3 from 'web3'
 import Token from '../abis/Token.json'
@@ -90,4 +92,19 @@ export const subscribeToEvents = async (exchange, dispatch) => {
   exchange.events.Cancel({}, (error, event) => {
     dispatch(orderCancelled(event.returnValues))
   })
+  exchange.events.Trade({}, (error, event) => {
+    dispatch(orderFilled(event.returnValues))
+  })
 }
+
+export const fillOrder = (dispatch, exchange, order, account) => {
+  exchange.methods.fillOrder(order.id).send({ from: account })
+    .on('transactionHash', hash => {
+      dispatch(orderFilling())
+    })
+    .on('error', error => {
+      console.log(error);
+      window.alert('There was an error.');
+    })
+}
+

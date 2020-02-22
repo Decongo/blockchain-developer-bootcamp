@@ -70,7 +70,7 @@ const decorateFilledOrders = orders => {
 
 const decorateOrder = order => {
   let etherAmount, tokenAmount;
-  if (order.tokenGive == ETHER_ADDRESS) {
+  if (order.tokenGive === ETHER_ADDRESS) {
     etherAmount = order.amountGive;
     tokenAmount = order.amountGet;
   } else {
@@ -171,7 +171,7 @@ const decorateOrderBookOrder = order => {
     ...order,
     orderType,
     orderTypeClass: ( orderType === 'buy' ? GREEN : RED ),
-    orderFIllClass: ( orderType === 'buy' ? 'sell' : 'buy' )
+    orderFillAction: ( orderType === 'buy' ? 'sell' : 'buy' )
   });
 }
 
@@ -318,3 +318,6 @@ const buildGraphData = orders => {
 
 const orderCancelling = state => get(state, 'exchange.orderCancelling', false);
 export const orderCancellingSelector = createSelector(orderCancelling, status => status);
+
+const orderFilling = state => get(state, 'exchange.orderFilling', false);
+export const orderFillingSelector = createSelector(orderFilling, status => status);
