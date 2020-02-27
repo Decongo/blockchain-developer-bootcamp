@@ -17,7 +17,10 @@ import {
   exchangeEtherBalanceLoaded,
   exchangeTokenBalanceLoaded,
   balancesLoaded,
-  balancesLoading
+  balancesLoading,
+  buyOrderMaking,
+  sellOrderMaking,
+  orderMade
 } from './actions'
 import Web3 from 'web3'
 import Token from '../abis/Token.json'
@@ -111,6 +114,10 @@ export const subscribeToEvents = async (exchange, dispatch) => {
   exchange.events.Withdraw({}, (error, event) => {
     dispatch(balancesLoaded());
   });
+
+  exchange.events.Order({}, (error, event) => {
+    dispatch(orderMade(event.returnValues));
+  });
 }
 
 export const fillOrder = (dispatch, exchange, order, account) => {
@@ -193,5 +200,37 @@ export const withdrawToken = (dispatch, exchange, web3, token, amount, account) 
     .on('error', error => {
       console.error(error);
       window.alert('There was an error.');
+    })
+}
+
+export const makeBuyOrder = (dispatch, exchange, token, web3, order, account) => {
+  const tokenGet = token.options.address;
+  const amountGet = web3.utils.toWei(order.amount, 'ether');
+  const tokenGive = ETHER_ADDRESS;
+  const amountGive = web3.utils.toWei((order.amount * order.price).toString(), 'ether')
+
+  exchange.methods.makeOrder(tokenGet, amountGet, tokenGive, amountGive).send({ from: account })
+    .on('transactionHash', (hash) => {
+      dispatch(buyOrderMaking())
+    })
+    .on('error', (error) => {
+      console.error(error);
+      window.alert('There was an error!');
+    })
+}
+
+export const makeSellOrder = (dispatch, exchange, token, web3, order, account) => {
+  const tokenGet = ETHER_ADDRESS;
+  const amountGet = web3.utils.toWei((order.amount * order.price).toString(), 'ether');
+  const tokenGive = token.options.address;
+  const amountGive = web3.utils.toWei(order.amount, 'ether')
+
+  exchange.methods.makeOrder(tokenGet, amountGet, tokenGive, amountGive).send({ from: account })
+    .on('transactionHash', (hash) => {
+      dispatch(sellOrderMaking())
+    })
+    .on('error', (error) => {
+      console.error(error);
+      window.alert('There was an error!');
     })
 }
