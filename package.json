@@ -2,7 +2,10 @@
   "name": "blockchain-developer-bootcamp",
   "version": "0.1.0",
   "description": "Decentralized Ethereum Token Exchange",
-  "author": "gregory@dappuniversity.com",
+  "engines": {
+    "node": "9.10.0"
+  },
+  "author": "devon.conger@gmail.com",
   "private": true,
   "dependencies": {
     "apexcharts": "3.6.3",
