@@ -56,7 +56,6 @@ export const filledOrdersSelector = createSelector(
 
     // sort orders by date descending for display
     orders = orders.sort((a, b) => b.timestamp - a.timestamp);
-    console.log(orders);
     return orders;
   }
 )

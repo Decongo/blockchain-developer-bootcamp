@@ -12,13 +12,20 @@ import NewOrder from './NewOrder'
 class Content extends Component {
 
   componentWillMount() {
-    this.loadBlockchainData(this.props);
+    try {
+      this.loadBlockchainData(this.props);
+      console.log('Content.js: loaded bc data');
+    } catch (e) {
+      console.error('Content.js: error loading data from blockchain', e);
+    }
   }
 
   async loadBlockchainData(props) {
     const { dispatch, exchange } = props;
     await loadAllOrders(exchange, dispatch);
+    console.log('orders loaded');
     await subscribeToEvents(exchange, dispatch)
+    console.log('subscribed to events');
   }
 
   render() {

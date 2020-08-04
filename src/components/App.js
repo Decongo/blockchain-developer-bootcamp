@@ -14,15 +14,22 @@ import { contractsLoadedSelector } from '../store/selectors'
 class App extends Component {
 
   componentWillMount() {
-    this.loadBlockchainData(this.props.dispatch);
+    this.loadBlockchainData(this.props.dispatch);    
   }
 
   async loadBlockchainData(dispatch) {
     const web3 = loadWeb3(dispatch);
-    await web3.eth.net.getNetworkType();
+    console.log('web3 loaded');
+    await window.ethereum.enable();
+    let network = await web3.eth.net.getNetworkType();
+    console.log('network:', network);
     const networkId = await web3.eth.net.getId();
+    console.log('networkID:', networkId);
+    
     await loadAccount(web3, dispatch);
+
     const token = await loadToken(web3, networkId, dispatch);
+
     if (!token) {
       window.alert('Token smart contract not deployed to the current network. Please select another network with Metamask');
     }
