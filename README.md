@@ -8,7 +8,19 @@ The DecongoCoin Decentralized Exchange (DC DEX) is exactly what it sounds like -
 
 DecongoCoin is a crypto currency built on the Ethereum platform. More technically, it is an ERC20 token. It holds no value, and most likely never will, since it exists only on the local machines of those who decide to build this project. To my knowledge, that is only me. It also exists on the Kovan Testnet, but again, I think that I'm the only person who has interacted with these smart contracts.
 
+## Exchange
+The exchange is completely decentralized. This means that no organization ever holds your funds or manages trades. All exchanges are handled by the smart contract. All exchange orders are made and fulfilled by users.
+
+### Purchasing DevonCoin
+1. Deposit Ether into the contract.
+2. Look for any existing sell orders. If there is one that satisfies you, click it. Accept the transaction via MetaMask.
+3. If no current orders are sufficient, make a buy order. Wait for someone to fill the order.
+4. Your new funds are now in your account in the contract.
+
 ## Installation
+
+### MetaMask
+Get it from the Chrome or FireFox extension managers.
 
 ### Ganache
 Get it from the [website.](https://www.trufflesuite.com/ganache)
@@ -33,7 +45,7 @@ npm install
 ```
 
 ### Devtools
-You can download the React and Redux devtools through your browser's extension manager. I like the extensions in Chrome and FireFox, so I recommend using either of those two browsers.
+You can download the React and Redux devtools through your browser's extension manager.
 
 ## Important Commands
 
