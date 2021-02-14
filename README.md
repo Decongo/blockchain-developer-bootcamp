@@ -1,68 +1,87 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# DecongoCoin Decentralized Exchange
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+This project is an extension of the Dapp University Blockchain Developer Bootcamp capstone project. It exists for educational purposes only.
 
-### `yarn start`
+The DecongoCoin Decentralized Exchange (DC DEX) is exactly what it sounds like - a decentralized platform for trading DecongoCoin. 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+DecongoCoin is a crypto currency built on the Ethereum platform. More technically, it is an ERC20 token. It holds no value, and most likely never will, since it exists only on the local machines of those who decide to build this project. To my knowledge, that is only me. It also exists on the Kovan Testnet, but again, I think that I'm the only person who has interacted with these smart contracts.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Exchange
+The exchange is completely decentralized. This means that no organization ever holds your funds or manages trades. All exchanges are handled by the smart contract. All exchange orders are made and fulfilled by users.
 
-### `yarn test`
+### Purchasing DevonCoin
+1. Deposit Ether into the contract.
+2. Look for any existing sell orders. If there is one that satisfies you, click it. Accept the transaction via MetaMask.
+3. If no current orders are sufficient, make a buy order. Wait for someone to fill the order.
+4. Your new funds are now in your account in the contract.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `yarn build`
+### MetaMask
+Get it from the Chrome or FireFox extension managers.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Ganache
+Get it from the [website.](https://www.trufflesuite.com/ganache)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Node.js
+Get version 10.16.3 from the [website](https://nodejs.org/en/download/) or using your favorite package manager.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Truffle
+```
+npm install -g truffle@5.1.65
+```
 
-### `yarn eject`
+### Clone this repository
+```
+git clone https://github.com/Decongo/blockchain-developer-bootcamp.git
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Install Dependencies
+```
+cd blockchain-developer-bootcamp
+npm install
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Devtools
+You can download the React and Redux devtools through your browser's extension manager.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Important Commands
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Test Smart Contract
+```
+truffle test
+```
 
-## Learn More
+### Compile Smart Contract
+```
+truffle compile
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Pre-populate Contract Data
+```
+truffle exec scripts/seed-exchange.js
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Deploy Smart Contract to Ganache
+```
+truffle migrate --reset
+```
 
-### Code Splitting
+### Run Development Server
+```
+npm run start
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Notes
 
-### Analyzing the Bundle Size
+I highly recommend that you use the versions of the following tools as listed below.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+* Truffle version 5.1.65
+* Solidity version 0.5.16
+* Node version 10.16.3
+* Web3.js version 1.2.9
 
-### Making a Progressive Web App
+I have experienced compatibility issues in the past due to updates to Truffle and Node, so be aware of that.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
