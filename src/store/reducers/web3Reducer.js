@@ -6,6 +6,8 @@ function web3(state = {}, action) {
       return { ...state, account: action.account };
     case 'ETHER_BALANCE_LOADED':
       return { ...state, balance: action.balance };
+    case 'METAMASK_FOUND':
+      return { ...state, metaMaskFound: action.value };
     default:
       return state;
   }

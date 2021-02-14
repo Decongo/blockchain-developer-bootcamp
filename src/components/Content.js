@@ -9,12 +9,12 @@ import PriceChart from './PriceChart'
 import Balance from './Balance'
 import NewOrder from './NewOrder'
 
+
 class Content extends Component {
 
   componentWillMount() {
     try {
       this.loadBlockchainData(this.props);
-      console.log('Content.js: loaded bc data');
     } catch (e) {
       console.error('Content.js: error loading data from blockchain', e);
     }
@@ -23,9 +23,7 @@ class Content extends Component {
   async loadBlockchainData(props) {
     const { dispatch, exchange } = props;
     await loadAllOrders(exchange, dispatch);
-    console.log('orders loaded');
     await subscribeToEvents(exchange, dispatch)
-    console.log('subscribed to events');
   }
 
   render() {
@@ -41,7 +39,6 @@ class Content extends Component {
           <MyTransactions />
         </div>
         <Trades />
-        
       </div>
     )
   }
@@ -49,7 +46,7 @@ class Content extends Component {
 
 function mapStateToProps(state) {
   return {
-    exchange: exchangeSelector(state)
+    exchange: exchangeSelector(state),
   }
 }
 

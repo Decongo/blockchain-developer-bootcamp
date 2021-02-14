@@ -13,6 +13,13 @@ export function web3AccountLoaded(account) {
   }
 }
 
+export function metaMaskFound(value) {
+  return {
+    type: 'METAMASK_FOUND',
+    value
+  }
+}
+
 // TOKEN
 export function tokenLoaded(contract) {
   return {

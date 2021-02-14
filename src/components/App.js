@@ -9,22 +9,48 @@ import {
   loadToken, 
   loadExchange 
 } from '../store/interactions'
-import { contractsLoadedSelector } from '../store/selectors'
+import { metaMaskFound } from '../store/actions'
+import { 
+  contractsLoadedSelector, 
+  metaMaskFoundSelector 
+} from '../store/selectors'
+import MetaMaskWarning from './MetaMaskWarning'
+
+
+const showError = props => {
+  if (!props.metaMaskFound) {
+    return <MetaMaskWarning />
+  }
+
+  return (
+    <div className='content text-white'>
+      <h1>Please log in to MetaMask and refresh the page.</h1>
+    </div>
+  );
+}
+
 
 class App extends Component {
 
   componentWillMount() {
-    this.loadBlockchainData(this.props.dispatch);    
+    this.loadBlockchainData(this.props.dispatch);  
   }
 
   async loadBlockchainData(dispatch) {
     const web3 = loadWeb3(dispatch);
-    console.log('web3 loaded');
+
+    if (typeof window.web3 === 'undefined') {
+      alert('MetaMask not found');
+      dispatch(metaMaskFound(false));
+      return;
+    } 
+
+    dispatch(metaMaskFound(true));
+
     await window.ethereum.enable();
-    let network = await web3.eth.net.getNetworkType();
-    console.log('network:', network);
+
+    // let network = await web3.eth.net.getNetworkType();
     const networkId = await web3.eth.net.getId();
-    console.log('networkID:', networkId);
     
     await loadAccount(web3, dispatch);
 
@@ -43,8 +69,7 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar />
-        { this.props.contractsLoaded ? <Content /> : <div className='content'></div> }
-        
+        { this.props.contractsLoaded ? <Content /> : showError(this.props) }
       </div>
     );
   }
@@ -52,7 +77,8 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    contractsLoaded: contractsLoadedSelector(state)
+    contractsLoaded: contractsLoadedSelector(state),
+    metaMaskFound: metaMaskFoundSelector(state)
   }
 }
 

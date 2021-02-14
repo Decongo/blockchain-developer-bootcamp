@@ -3,6 +3,9 @@ import { createSelector } from 'reselect'
 import moment from 'moment'
 import { ETHER_ADDRESS, tokens, ether, GREEN, RED, formatBalance } from '../helpers.js'
 
+const metaMaskFound = state => get(state, 'web3.metaMaskFound');
+export const metaMaskFoundSelector = createSelector(metaMaskFound, val => val);
+
 const account = state => get(state, 'web3.account');
 export const accountSelector = createSelector(account, a => a);
 
