@@ -18848,8 +18848,7 @@
             }
           ],
           "name": "Deposit",
-          "type": "event",
-          "signature": "0xdcbc1c05240f31ff3ad067ef1ee35ce4997762752e3a095284754544f4c709d7"
+          "type": "event"
         },
         "0xf341246adaac6f497bc2a656f546ab9e182111d630394f0c57c710a59a2cb567": {
           "anonymous": false,
@@ -18876,8 +18875,7 @@
             }
           ],
           "name": "Withdraw",
-          "type": "event",
-          "signature": "0xf341246adaac6f497bc2a656f546ab9e182111d630394f0c57c710a59a2cb567"
+          "type": "event"
         },
         "0x9d33853d43e3607b4cc01fdc78338ff2dca6fef7db9232dae6d3eb55fbc3b109": {
           "anonymous": false,
@@ -18919,8 +18917,7 @@
             }
           ],
           "name": "Order",
-          "type": "event",
-          "signature": "0x9d33853d43e3607b4cc01fdc78338ff2dca6fef7db9232dae6d3eb55fbc3b109"
+          "type": "event"
         },
         "0x77de1da0be5f2d3b110d05c6694e5c4ff2d9da7cd23d84353ecf78c7b5acec61": {
           "anonymous": false,
@@ -18962,8 +18959,7 @@
             }
           ],
           "name": "Cancel",
-          "type": "event",
-          "signature": "0x77de1da0be5f2d3b110d05c6694e5c4ff2d9da7cd23d84353ecf78c7b5acec61"
+          "type": "event"
         },
         "0x0dddf4182dc0fc1a311cb75f049c97403c6b8a99cf6b2229a36e7c526acb3f81": {
           "anonymous": false,
@@ -19010,8 +19006,7 @@
             }
           ],
           "name": "Trade",
-          "type": "event",
-          "signature": "0x0dddf4182dc0fc1a311cb75f049c97403c6b8a99cf6b2229a36e7c526acb3f81"
+          "type": "event"
         }
       },
       "links": {},
@@ -19045,8 +19040,7 @@
             }
           ],
           "name": "Deposit",
-          "type": "event",
-          "signature": "0xdcbc1c05240f31ff3ad067ef1ee35ce4997762752e3a095284754544f4c709d7"
+          "type": "event"
         },
         "0xf341246adaac6f497bc2a656f546ab9e182111d630394f0c57c710a59a2cb567": {
           "anonymous": false,
@@ -19073,8 +19067,7 @@
             }
           ],
           "name": "Withdraw",
-          "type": "event",
-          "signature": "0xf341246adaac6f497bc2a656f546ab9e182111d630394f0c57c710a59a2cb567"
+          "type": "event"
         },
         "0x9d33853d43e3607b4cc01fdc78338ff2dca6fef7db9232dae6d3eb55fbc3b109": {
           "anonymous": false,
@@ -19116,8 +19109,7 @@
             }
           ],
           "name": "Order",
-          "type": "event",
-          "signature": "0x9d33853d43e3607b4cc01fdc78338ff2dca6fef7db9232dae6d3eb55fbc3b109"
+          "type": "event"
         },
         "0x77de1da0be5f2d3b110d05c6694e5c4ff2d9da7cd23d84353ecf78c7b5acec61": {
           "anonymous": false,
@@ -19159,8 +19151,7 @@
             }
           ],
           "name": "Cancel",
-          "type": "event",
-          "signature": "0x77de1da0be5f2d3b110d05c6694e5c4ff2d9da7cd23d84353ecf78c7b5acec61"
+          "type": "event"
         },
         "0x0dddf4182dc0fc1a311cb75f049c97403c6b8a99cf6b2229a36e7c526acb3f81": {
           "anonymous": false,
@@ -19207,8 +19198,7 @@
             }
           ],
           "name": "Trade",
-          "type": "event",
-          "signature": "0x0dddf4182dc0fc1a311cb75f049c97403c6b8a99cf6b2229a36e7c526acb3f81"
+          "type": "event"
         }
       },
       "links": {},
@@ -19216,8 +19206,9 @@
       "transactionHash": "0xb902cd348b16b50899e5f259af7fb9bc0351a932f3e0b5a869412bcf9a073bba"
     }
   },
-  "schemaVersion": "3.0.16",
-  "updatedAt": "2020-08-04T04:54:29.844Z",
+  "schemaVersion": "3.3.3",
+  "updatedAt": "2021-02-14T00:12:17.139Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {}
   },
