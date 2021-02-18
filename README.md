@@ -11,7 +11,7 @@ DecongoCoin is a crypto currency built on the Ethereum platform. More technicall
 ## Exchange
 The exchange is completely decentralized. This means that no organization ever holds your funds or manages trades. All exchanges are handled by the smart contract. All exchange orders are made and fulfilled by users.
 
-### Purchasing DevonCoin
+### Purchasing MordeCoin
 1. Deposit Ether into the contract.
 2. Look for any existing sell orders. If there is one that satisfies you, click it. Accept the transaction via MetaMask.
 3. If no current orders are sufficient, make a buy order. Wait for someone to fill the order.

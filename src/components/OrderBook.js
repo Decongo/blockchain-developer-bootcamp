@@ -51,8 +51,8 @@ const showOrderBook = props => {
     <tbody>
       { orderBook.sellOrders.map(order => renderOrder(order, props)) }
       <tr>
-        <th>DAPP</th>
-        <th>DAPP/ETH</th>
+        <th>MORDE</th>
+        <th>MORDE/ETH</th>
         <th>ETH</th>
       </tr>
       { orderBook.buyOrders.map(order => renderOrder(order, props)) }
