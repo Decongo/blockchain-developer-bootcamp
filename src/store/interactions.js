@@ -1,5 +1,4 @@
 /* This file contains everything that interacts with the blockchain */
-
 import { 
   web3Loaded,
   web3AccountLoaded,
@@ -20,7 +19,11 @@ import {
   balancesLoading,
   buyOrderMaking,
   sellOrderMaking,
-  orderMade
+  orderMade,
+  etherDeposited,
+  etherWithdrawn,
+  tokenDeposited,
+  tokenWithdrawn
 } from './actions'
 import Web3 from 'web3'
 import Token from '../abis/Token.json'
@@ -153,9 +156,11 @@ export const loadBalances = async (dispatch, web3, exchange, token, account) => 
 }
 
 export const depositEther = (dispatch, exchange, web3, amount, account) => {
-  exchange.methods.depositEther().send({ from: account, value: web3.utils.toWei(amount, 'ether') })
+  const amountInWei = web3.utils.toWei(amount, 'ether');
+  exchange.methods.depositEther().send({ from: account, value: amountInWei })
     .on('transactionHash', hash => {
-      dispatch(balancesLoading())
+      dispatch(balancesLoading());
+      dispatch(etherDeposited(amountInWei));
     })
     .on('error', error => {
       console.log(error);
@@ -164,9 +169,11 @@ export const depositEther = (dispatch, exchange, web3, amount, account) => {
 }
 
 export const withdrawEther = (dispatch, exchange, web3, amount, account) => {
-  exchange.methods.withdrawEther(web3.utils.toWei(amount, 'ether')).send({ from: account })
+  const amountInWei = web3.utils.toWei(amount, 'ether');
+  exchange.methods.withdrawEther(amountInWei).send({ from: account })
     .on('transactionHash', hash => {
       dispatch(balancesLoading())
+      dispatch(etherWithdrawn(amountInWei))
     })
     .on('error', error => {
       console.log(error);
@@ -175,13 +182,14 @@ export const withdrawEther = (dispatch, exchange, web3, amount, account) => {
 }
 
 export const depositToken = (dispatch, exchange, web3, token, amount, account) => {
-  amount = web3.utils.toWei(amount, 'ether');
+  const amountInWei = web3.utils.toWei(amount, 'ether');
 
-  token.methods.approve(exchange.options.address, amount).send({ from: account })
+  token.methods.approve(exchange.options.address, amountInWei).send({ from: account })
     .on('transactionHash', hash => {
-      exchange.methods.depositToken(token.options.address, amount).send({ from: account })
+      exchange.methods.depositToken(token.options.address, amountInWei).send({ from: account })
         .on('transactionHash', hash => {
           dispatch(balancesLoading());
+          dispatch(tokenDeposited(amountInWei));
         })
     })
     .on('error', error => {
@@ -191,11 +199,12 @@ export const depositToken = (dispatch, exchange, web3, token, amount, account) =
 }
 
 export const withdrawToken = (dispatch, exchange, web3, token, amount, account) => {
-  amount = web3.utils.toWei(amount, 'ether');
+  const amountInWei = web3.utils.toWei(amount, 'ether');
 
-  exchange.methods.withdrawToken(token.options.address, amount).send({ from: account })
+  exchange.methods.withdrawToken(token.options.address, amountInWei).send({ from: account })
     .on('transactionHash', hash => {
       dispatch(balancesLoading());
+      dispatch(tokenWithdrawn(amountInWei));
     })
     .on('error', error => {
       console.error(error);

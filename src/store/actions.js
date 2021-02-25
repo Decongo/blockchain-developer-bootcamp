@@ -202,3 +202,35 @@ export function sellOrderMaking() {
     type: 'SELL_ORDER_MAKING',
   }
 }
+
+
+export function etherDeposited(amount) {
+  return {
+    type: 'ETHER_DEPOSITED',
+    amount
+  }
+}
+
+
+export function etherWithdrawn(amount) {
+  return {
+    type: 'ETHER_WITHDRAWN',
+    amount
+  }
+}
+
+
+export function tokenDeposited(amount) {
+  return {
+    type: 'TOKEN_DEPOSITED',
+    amount
+  }
+}
+
+
+export function tokenWithdrawn(amount) {
+  return {
+    type: 'TOKEN_WITHDRAWN',
+    amount
+  }
+}

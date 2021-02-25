@@ -1,3 +1,6 @@
+import { calculateNewBalance } from '../../helpers.js'
+
+
 function exchange(state = {}, action) {
   let index, data;
   switch (action.type) {
@@ -89,12 +92,21 @@ function exchange(state = {}, action) {
           making: false
         }
       }
-      case 'SELL_ORDER_AMOUNT_CHANGED':
-          return { ...state, sellOrder: { ...state.sellOrder, amount: action.amount } };
-        case 'SELL_ORDER_PRICE_CHANGED':
-          return { ...state, sellOrder: { ...state.sellOrder, price: action.price } };
-        case 'SELL_ORDER_MAKING':
-          return { ...state, sellOrder: { ...state.sellOrder, amount: null, price: null, making: true } }; 
+    case 'SELL_ORDER_AMOUNT_CHANGED':
+      return { ...state, sellOrder: { ...state.sellOrder, amount: action.amount } };
+    case 'SELL_ORDER_PRICE_CHANGED':
+      return { ...state, sellOrder: { ...state.sellOrder, price: action.price } };
+    case 'SELL_ORDER_MAKING':
+      return { ...state, sellOrder: { ...state.sellOrder, amount: null, price: null, making: true } };
+      
+    case 'ETHER_DEPOSITED':
+      return { ...state, etherBalance: calculateNewBalance(state.etherBalance, action.amount, 'add') };
+    case 'ETHER_WITHDRAWN':
+      return { ...state, etherBalance: calculateNewBalance(state.etherBalance, action.amount, 'sub') };
+    case 'TOKEN_DEPOSITED':
+      return { ...state, tokenBalance: calculateNewBalance(state.tokenBalance, action.amount, 'add') };
+    case 'TOKEN_WITHDRAWN':
+      return { ...state, tokenBalance: calculateNewBalance(state.tokenBalance, action.amount, 'sub') };
     default:
       return state;
   }
